@@ -109,4 +109,24 @@ begin
       exact relation.refl_gen.single this } }
 end
 
+-- Proposition 3.28. If < totally orders A, then:
+-- (∀ a, b ∈ A) ((∀ x ∈ A) (x < a ↔ x < b) → a = b)
+lemma proposition_3_28 (h : total_order r) (a b : α) (h' : ∀ x, r x a ↔ r x b) : a = b :=
+begin
+  have h₁ : ¬r a b,
+  { intro hab,
+    specialize h' a,
+    rw ←h' at hab,
+    exact h.1.1 a hab },
+  have h₂ : ¬r b a,
+  { intro hab,
+    specialize h' b,
+    rw h' at hab,
+    exact h.1.1 b hab },
+  by_contra hab,
+  cases h.2 hab with h h,
+  { exact h₁ h },
+  { exact h₂ h }
+end
+
 end
