@@ -129,4 +129,37 @@ begin
   { exact h₂ h }
 end
 
+def irrefl_gen (r : α → α → Prop) := λ a b, r a b ∧ a ≠ b
+
+-- Problem 3.4. Give a proof of Proposition 3.26.
+--
+-- Proposition 3.26. If R is a partial order on X, then R^− = R \ Id_X is a
+-- strict order. Moreover, if R is linear, then R^− is total.
+lemma proposition_3_26 (h : partial_order' r) : strict_order (irrefl_gen r) :=
+begin
+  obtain ⟨h₁, h₂, h₃⟩ := h,
+  refine ⟨_, _, _⟩,
+  { unfold irreflexive,
+    rintros x ⟨hx₁, hx₂⟩,
+    apply hx₂,
+    refl },
+  { rintros x y ⟨⟨h₁₁, h₁₂⟩, ⟨h₂₁, h₂₂⟩⟩,
+    apply h₁₂,
+    apply h₃ h₁₁ h₂₁ },
+  { rintros x y z ⟨hxy₁, hxy₂⟩ ⟨hyz₁, hyz₂⟩,
+    have hxz₁ := h₂ hxy₁ hyz₁,
+    refine ⟨hxz₁, _⟩,
+    unfold anti_symmetric at h₃,
+    rintro h,
+    subst h,
+    specialize h₃ hxy₁ hyz₁,
+    subst h₃,
+    tidy }
+end
+
+def relative_product (r s : α → α → Prop) := λ a b, ∃ c, r a c ∧ s c b
+
+-- Problem 3.5. Show that the transitive closure of R is in fact transitive.
+lemma problem_3_5 : sorry := sorry
+
 end
