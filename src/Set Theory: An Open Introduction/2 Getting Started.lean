@@ -21,6 +21,21 @@ begin
 end
 
 #check @finset.induction_on
+#print finset
+
+lemma insert_card_eq_succ [decidable_eq α] {x : α} {A : finset α} (h : x ∉ A) :
+  (insert x A).card = A.card.succ :=
+begin
+  change (⟨_, multiset.nodup_ndinsert x A.2⟩ : finset α).1.card = _,
+  simp [multiset.ndinsert_of_not_mem h],
+  refl
+end
+
+lemma insert_powerset_card_eq_two_mul [decidable_eq α] {x : α} {A : finset α} (h : x ∉ A) :
+  (insert x A).powerset.card = 2 * A.powerset.card :=
+begin
+  sorry
+end
 
 -- Problem 2.3. Show that if A has n members, then ℘(A) has 2^n members.
 lemma problem_2_3 [decidable_eq α] (A : finset α) : A.powerset.card = 2 ^ A.card :=
@@ -32,8 +47,9 @@ begin
     intro A,
     intro hx,
     intro ih,
-    sorry
-  }
+    rw [insert_card_eq_succ hx, insert_powerset_card_eq_two_mul hx],
+    change _ = 2 * 2 ^ A.card,
+    rw ih }
 end
 
 -- Problem 2.4. Prove that if A ⊆ B, then A ∪ B = B.
@@ -79,6 +95,10 @@ begin
   split; assumption
 end
 
+#check @not_and_distrib
+#check @not_not
+#check @congr_fun
+
 -- Problem 2.7. Prove that if A ⊊ B, then B \ A ≠ ∅
 lemma problem_2_7 (h : A ⊂ B) : B \ A ≠ ∅ :=
 begin
@@ -92,7 +112,19 @@ begin
   change ∀ x, x ∈ B → x ∈ A,
   intro x,
   intro hx,
-  sorry
+  specialize @h₁ x,
+  change (λ x, _) = (λ x, _) at h,
+  simp at h,
+  have : x ∉ B ∨ x ∈ A,
+  { rw [←@not_not (x ∈ A), ←not_and_distrib],
+    rintro ⟨h₁, h₂⟩,
+    apply h₂,
+    clear h₂,
+    have := congr_fun h x,
+    tidy },
+  cases this,
+  { tidy },
+  { assumption }
 end
 
 -- Definition 2.23 (Ordered pair). ⟨a, b⟩ = {{a}, {a, b}}.
