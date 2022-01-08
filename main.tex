@@ -7,6 +7,8 @@
 
 \pagestyle{plain}
 
+\usepackage{hyperref}
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -30,12 +32,83 @@
 \crefname{example}{Example}{Examples}
 \crefname{corollary}{Corollary}{Corollaries}
 
+\begin{document}
+
 \title{Logic}
 \author{Pedro Minicz}
 \date{}
-
-\begin{document}
-
 \maketitle
+
+\frontmatter
+
+\tableofcontents
+
+\mainmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Set Theory: An Open Introduction   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part*{Set Theory: An Open Introduction}
+\addcontentsline{toc}{part}{Set Theory: An Open Introduction}
+\setcounter{chapter}{7}
+\renewcommand*{\theHchapter}{01\the\value{chapter}}
+
+\chapter{The Iterative Conception}
+\input{src/set_theory_an_open_introduction/08_the_iterative_conception}
+
+\chapter{Steps towards Z}
+\input{src/set_theory_an_open_introduction/09_steps_towards_z}
+
+\chapter{Ordinals}
+\input{src/set_theory_an_open_introduction/10_ordinals}
+
+\chapter{Stages and Ranks}
+\input{src/set_theory_an_open_introduction/11_stages_and_ranks}
+
+\chapter{Replacement}
+\input{src/set_theory_an_open_introduction/12_replacement}
+
+\chapter{Ordinal Arithmetic}
+\input{src/set_theory_an_open_introduction/13_ordinal_arithmetic}
+
+\chapter{Cardinals}
+\input{src/set_theory_an_open_introduction/14_cardinals}
+
+\chapter{Cardinal Arithmetic}
+\input{src/set_theory_an_open_introduction/15_cardinal_arithmetic}
+
+\chapter{Choice}
+\input{src/set_theory_an_open_introduction/16_choice}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   A Friendly Introduction to Mathematical Logic   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part*{A Friendly Introduction to Mathematical Logic}
+\addcontentsline{toc}{part}{A Friendly Introduction to Mathematical Logic}
+\setcounter{chapter}{0}
+\renewcommand*{\theHchapter}{02\the\value{chapter}}
+
+\chapter{Structures and Languages}
+\input{src/a_friendly_introduction_to_mathematical_logic/1_structures_and_languages}
+
+\chapter{Deductions}
+\input{src/a_friendly_introduction_to_mathematical_logic/2_deductions}
+
+\chapter{Completeness and Compactness}
+\input{src/a_friendly_introduction_to_mathematical_logic/3_completeness_and_compactness}
+
+\chapter{Incompleteness from Two Points of View}
+\input{src/a_friendly_introduction_to_mathematical_logic/4_incompleteness_from_two_points_of_view}
+
+\chapter{Syntactic Incompleteness---Groundwork}
+\input{src/a_friendly_introduction_to_mathematical_logic/5_syntactic_incompleteness_groundwork}
+
+\chapter{The Incompleteness Theorems}
+\input{src/a_friendly_introduction_to_mathematical_logic/6_the_incompleteness_theorems}
+
+\chapter{Computability Theory}
+\input{src/a_friendly_introduction_to_mathematical_logic/7_computability_theory}
 
 \end{document}
